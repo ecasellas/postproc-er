@@ -1,0 +1,10 @@
+{
+    "cosmo-2I_er": {
+        "src_tar": "/home/ecm/projects/uoc/tfm/data/cosmo-2I_er/cosmo-2l_er.{year}{month}.zip",
+        "src": "cosmo-2I_er.{year}{month}{day}{hour}00.grib",
+        "compressed": true,
+        "compacted": true
+    },
+    "nwp_dir": "/tmp/"
+}
+
