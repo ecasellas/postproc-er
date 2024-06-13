@@ -1,7 +1,7 @@
 import numpy as np
 import pyproj
 import xarray
-from sklearn.neighbors import NearestNeighbor
+from sklearn.neighbors import NearestNeighbors
 
 
 def get_model_points(lsm: xarray.DataArray, stations_md) -> dict:
