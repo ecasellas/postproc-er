@@ -5,6 +5,9 @@
         "compressed": true,
         "compacted": true
     },
-    "nwp_dir": "/tmp/"
+    "nwp_dir": "/tmp/",
+
+    "station_dir_pq": "",
+    "station_dir_source": ""
 }
 

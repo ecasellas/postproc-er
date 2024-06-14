@@ -1,3 +1,5 @@
+"""Script to create observation Parquet files from json.gz ARPAE osservati files.
+"""
 import gzip
 import json
 from datetime import datetime
@@ -10,9 +12,9 @@ from postproc.utils.config import load_config
 
 if __name__ == "__main__":
 
-    config = load_config("/home/ecm/projects/postproc-er/config_grib.json")
+    config = load_config("config_grib.json")
 
-    osservati_files = glob("/home/ecm/projects/uoc/tfm/data/osservati/*.json.gz")
+    osservati_files = glob(config["station_dir_source"])
 
     for osservati_file in osservati_files:
 
@@ -49,9 +51,7 @@ if __name__ == "__main__":
         osservati_data = pd.DataFrame(osservati_data)
 
         osservati_data.to_parquet(
-            "/home/ecm/projects/uoc/tfm/data/osservati/"
-            + basename(osservati_file)[:7]
-            + ".parquet"
+            config["station_dir_pq"] + basename(osservati_file)[:7] + ".parquet"
         )
 
-        print(basename(osservati_file)[:7] + ".parquet")
+        print("Fitxer " + basename(osservati_file)[:7] + ".parquet guardat.")
