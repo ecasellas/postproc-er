@@ -7,9 +7,9 @@ from tqdm import tqdm
 from unimodel.io.readers_nwp import read_moloch_grib
 
 from postproc.io.importers import import_nwp_grib
-from postproc.utils.geotools import get_model_points
-from postproc.utils.dates import end_of_month
 from postproc.utils.config import load_config
+from postproc.utils.dates import end_of_month
+from postproc.utils.geotools import get_model_points
 
 
 def __get_model_data(grib_file, var, stepType):
@@ -29,8 +29,6 @@ def __get_model_data(grib_file, var, stepType):
     for station_id, coords in dict_row_col.items():
 
         for i, lead_time in enumerate(lead_times):
-            valid_time = pd.Timestamp(int(grib_data[i].valid_time.data)).to_pydatetime()
-
             _model_data.append(
                 {
                     "station_id": station_id,
@@ -48,13 +46,7 @@ if __name__ == "__main__":
 
     config = load_config("/home/ecm/projects/postproc-er/config_grib.json")
 
-    stations_md = pd.read_parquet(
-        "/home/ecm/projects/uoc/tfm/data/osservati_metadata.parquet"
-    )
-
-    stations_md = pd.read_parquet(
-        config["stations_metadata_pq"]
-    )
+    stations_md = pd.read_parquet(config["stations_metadata_pq"])
 
     variables = [
         "2t",
@@ -90,7 +82,8 @@ if __name__ == "__main__":
         except Exception as err:
             if end_of_month(date) or date == dates[-1]:
                 pd.DataFrame(model_data).to_parquet(
-                    "/home/ecm/projects/uoc/tfm/data/model/cosmo_"
+                    config["model_dir_pq"]
+                    + "cosmo_"
                     + date.strftime("%Y%m")
                     + ".parquet"
                 )
@@ -120,7 +113,8 @@ if __name__ == "__main__":
 
         if end_of_month(date) or date == dates[-1]:
             pd.DataFrame(model_data).to_parquet(
-                "/home/ecm/projects/uoc/tfm/data/model/cosmo_"
+                config["model_dir_pq"]
+                + "cosmo_"
                 + date.strftime("%Y%m")
                 + ".parquet"
             )
