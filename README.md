@@ -15,7 +15,7 @@ This repository contains the postprocessing of COSMO model temperature forecasts
 
 ## Results
 
-The results of the postprocessing methodologies indicate that the neural network approach yields the best performance in improving temperature forecasts. As shown in the figure below, the neural network model significantly reduces forecast mean absolute error (MAE) compared to the original COSMO model outputs and other postprocessing methods.
+The results of the postprocessing methodologies indicate that the neural network approach yields the best performance in improving temperature forecasts. As shown in the figure below, the neural network model significantly reduces forecast mean error (ME) and mean absolute error (MAE) compared to the original COSMO model outputs and other postprocessing methods.
 
 ![mean_error](comparison_me.png)
 
@@ -23,4 +23,4 @@ The results of the postprocessing methodologies indicate that the neural network
 
 ## Data Sources
 
-Data is extracted from the ARPAE open data services, which provide comprehensive and high-quality meteorological data for the Emilia-Romagna region. This data includes real-time and historical weather observations from AWS stations, as well as model output from the COSMO numerical weather prediction system.
+Data is extracted from the [ARPAE open data service](https://dati.arpae.it/), which provide comprehensive and high-quality meteorological data for the Emilia-Romagna region. This data includes real-time and historical weather observations from AWS stations, as well as model output from the COSMO numerical weather prediction system.
