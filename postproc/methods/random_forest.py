@@ -5,7 +5,7 @@ import pickle
 import pandas as pd
 
 
-def get_station_predictors(
+def get_station_rf_model(
     station_data: DataFrame, model_data: DataFrame, predictand: str, predictors: list
 ) -> dict:
     """Calculates Random Forest model for a specific location using NWP model data.
@@ -93,3 +93,37 @@ def forecast_hourly(
             results.append(forecast)
 
     return results
+
+
+def train_rf_model(
+    station_id: str, model_data: pd.DataFrame, station_data: pd.DataFrame, var: str
+) -> RandomForestRegressor:
+    """Trains a Random Forest model using the provided data for a specific station.
+
+    Args:
+        station_id (str): Station identification code.
+        model_data (pd.DataFrame): The DataFrame containing the model input features for training.
+        station_data (pd.DataFrame): The DataFrame containing the station input target for training.
+        var (str): Name of the variable to predict.
+
+    Returns:
+        RandomForestRegressor: The trained Random Forest model.
+    """    
+    model_f = model_data[model_data["station_id"] == station_id]
+    dt_column = model_f["run_datetime"] + pd.to_timedelta(
+        model_f["lead_time"], unit="hours"
+    )
+    model_f = model_f.assign(datetime=dt_column)
+
+    station_f = station_data[station_data["station_id"] == station_id]
+
+    if len(station_f) > 365:
+        rf_model = get_station_rf_model(
+            station_f, model_f, predictand=var, predictors=None
+        )
+        if rf_model is None:
+            return None
+
+        return rf_model
+
+    return None
