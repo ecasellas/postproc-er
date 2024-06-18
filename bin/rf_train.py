@@ -1,5 +1,5 @@
 """Script per a l'entrenament dels punts d'estacions i l'obtenció d'un
-fitxer .parquet amb les regressions i els corresponents paràmetres.
+fitxer .pickle amb els models de Random Forest.
 """
 import pickle
 import sys

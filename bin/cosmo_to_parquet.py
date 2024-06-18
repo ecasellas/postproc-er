@@ -1,4 +1,3 @@
-
 from datetime import datetime
 from multiprocessing.pool import Pool
 
@@ -65,7 +64,6 @@ if __name__ == "__main__":
         "sp",
     ]
 
-
     start_date = datetime(2024, 2, 1)
     end_date = datetime(2024, 3, 31)
 
@@ -113,10 +111,7 @@ if __name__ == "__main__":
 
         if end_of_month(date) or date == dates[-1]:
             pd.DataFrame(model_data).to_parquet(
-                config["model_dir_pq"]
-                + "cosmo_"
-                + date.strftime("%Y%m")
-                + ".parquet"
+                config["model_dir_pq"] + "cosmo_" + date.strftime("%Y%m") + ".parquet"
             )
             model_data = []
             print("File saved.")

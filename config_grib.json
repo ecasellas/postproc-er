@@ -7,7 +7,15 @@
     },
     "nwp_dir": "/tmp/",
 
-    "station_dir_pq": "",
-    "station_dir_source": ""
+    
+    "station_dir_source": "/home/ecm/projects/uoc/tfm/data/osservati_json/",
+
+    "model_dir_pq": "/home/ecm/projects/uoc/tfm/data/model_v2/",
+    "station_dir_pq": "/home/ecm/projects/uoc/tfm/data/osservati/",
+    "station_metadata_pq": "/home/ecm/projects/uoc/tfm/data/osservati_metadata.parquet",
+
+    "regression_pq": "/home/ecm/projects/uoc/tfm/out/mos_regressions.parquet",
+
+    "lead_times": 49
 }
 

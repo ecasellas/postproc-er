@@ -19,13 +19,13 @@ if __name__ == "__main__":
     end_date = datetime(2023, 2, 1)
 
     try:
-        config = load_config("")
+        config = load_config("/home/ecm/projects/postproc-er/config_grib.json")
     except Exception as err:
         print("Error while loading the configuration file.")
         print(err)
         raise
 
-    lead_times = range(49)
+    lead_times = config["lead_times"]
     vars_to_train = ["2t"]
     model_parquet = config["model_dir_pq"] + "*.parquet"
     station_parquet = config["station_dir_pq"] + "*.parquet"
